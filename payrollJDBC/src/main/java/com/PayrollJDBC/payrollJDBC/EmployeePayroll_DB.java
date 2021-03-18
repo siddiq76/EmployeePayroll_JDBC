@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.Map;
 
 public class EmployeePayroll_DB {
 	
@@ -69,6 +70,14 @@ public class EmployeePayroll_DB {
 
 	public List<EmployeeData> getEmpPayrollDataForDataRange(LocalDate startDate, LocalDate endDate) {
 		return employeePayrollDBService.getEmpPayrollDataForDataRange( startDate,  endDate);
+	}
+
+	public Map<String, Double> readAverageSalaryByGender() {
+		return employeePayrollDBService.getAverageSalaryByGender();
+	}
+
+	public Double getMaxSalary() {
+		return employeePayrollDBService.getmaximumSalary();
 	}
 
 	
