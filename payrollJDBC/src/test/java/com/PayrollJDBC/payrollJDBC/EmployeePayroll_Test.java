@@ -2,6 +2,8 @@ package com.PayrollJDBC.payrollJDBC;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -48,4 +50,20 @@ public class EmployeePayroll_Test {
 	    		employeePayrollData = employeePayrollService.getEmpPayrollDataForDataRange(startDate, endDate);
 	    		Assert.assertEquals(3, employeePayrollData.size());
 			}
+			//UC6 functions like sum,max,average by gender
+			@Test
+			public void givenPayrollData_WhenAverageSalaryByGender_ShouldReturnProperValue()  {
+				employeePayrollService.readData();
+				Map<String,Double> averageSalaryByGender = employeePayrollService.readAverageSalaryByGender();
+				Assert.assertTrue(averageSalaryByGender.get("F").equals(300000.0));
+				Assert.assertTrue(averageSalaryByGender.get("M").equals(150000.0));
+			}
+			
+			@Test
+			public void givenPayrollData_WhenMaxSalary_ShouldReturnProperValue()  {
+				employeePayrollService.readData();
+				Double max =employeePayrollService.getMaxSalary();
+	                 Assert.assertEquals(300000.0, max,0.0);
+			}
+
 }
