@@ -1,7 +1,14 @@
 package com.PayrollJDBC.payrollJDBC;
 
+
+import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
@@ -49,7 +56,7 @@ public class EmployeePayroll_DB {
 	
 	public boolean checkEmployeePayrollSyncWithDB(String name) {
 		try {
-			return employeePayrollDBService.getEmployeeData(name).get(0).getName().equals(getEmployeeData(name).getName());
+			return employeePayrollDBService.getEmployeeData(name).get(0).equals(getEmployeeData(name));
 		} catch (IndexOutOfBoundsException e) {
 		}
 		return false;
@@ -60,5 +67,10 @@ public class EmployeePayroll_DB {
 		return employeePayrollList;
 	}
 
+	public List<EmployeeData> getEmpPayrollDataForDataRange(LocalDate startDate, LocalDate endDate) {
+		return employeePayrollDBService.getEmpPayrollDataForDataRange( startDate,  endDate);
+	}
+
+	
 	
 }
