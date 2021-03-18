@@ -65,5 +65,14 @@ public class EmployeePayroll_Test {
 				Double max =employeePayrollService.getMaxSalary();
 	                 Assert.assertEquals(300000.0, max,0.0);
 			}
+			// UC7 new employee added and synced wih database
+			@Test
+			public void givenNewEmployee_WhenAdded_ShouldSyncWithDatabase() {
+				employeePayrollService.readData();
+				employeePayrollService.addEmployeeToPayroll("Mark", 500000.0, LocalDate.now(), "M");
+				boolean result = employeePayrollService.checkEmployeePayrollSyncWithDB("Mark");
+				Assert.assertTrue(result);
+
+			}
 
 }
